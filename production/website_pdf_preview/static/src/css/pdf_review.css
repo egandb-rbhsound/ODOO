@@ -1,0 +1,39 @@
+
+
+.page_highlight{
+	border: 2px solid red;
+    border-radius: 7px;
+    box-shadow: 1px 0 15px red;
+    outline: none;
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media only screen and (max-width: 767px) {
+  .pdf-icons{
+    font-size: 2.3vw !important;
+    border-radius: 50% !important;
+    padding: 5px !important;
+  }
+  
+  .pdf-icons-nav{
+    display : none !important;
+  }
+  
+  
+  #pdf_preview_modal #page_num{
+  	width:25% !important;
+  }
+  
+  .page_datas.col-2{
+    padding :0 !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  
+  #pdf_preview_modal .modal-body {
+  	
+  	padding : 0 !important;
+  
+  }
+}

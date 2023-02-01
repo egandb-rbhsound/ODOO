@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record id="sms_mail_server_plivo_formview" model="ir.ui.view">
+            <field name="name">sms.mail.server.plivo.config</field>
+            <field name="model">sms.mail.server</field>   
+            <field name="inherit_id" ref="sms_notification.sms_mail_server_formview"/>                     
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='conn_info']" position="after">
+                    <group string='Security And Authentication' attrs="{'invisible':[('gateway','!=','plivo')]}">
+                        <field name="plivo_number" placeholder="Plivo Phone Number(e.g. +919898989898)" attrs="{'required':[('gateway','=','plivo')]}"/>
+                        <field name="plivo_auth_id" attrs="{'required':[('gateway','=','plivo')]}"/>
+                        <field name="plivo_auth_token" attrs="{'required':[('gateway','=','plivo')]}"/>
+                        <button name="test_conn_plivo" string="Test Connection" type="object"  />  
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

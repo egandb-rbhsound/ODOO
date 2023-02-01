@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sync_wizard" model="ir.ui.view">
+            <field name="name">Success</field>
+            <field name="model">sync.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Success Message">
+                    <group>
+                        <p class="oe_black">
+                            <h5>Successfully Synced Data</h5>
+                        </p>
+                    </group>
+                    <footer>
+                        <button string="OK" special="cancel" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

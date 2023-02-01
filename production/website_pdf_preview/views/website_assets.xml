@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="website_pdf_preview_assets" inherit_id="website.assets_frontend">
+		<xpath expr="." position="inside">
+			<link rel="stylesheet" type="text/css" href="/website_pdf_preview/static/src/css/pdf_review.css"/>
+<!-- 			<script type="text/javascript" src="/website_pdf_preview/static/src/js/dragscroll.js"/> -->
+<!-- 			<script type="text/javascript" src="/website_pdf_preview/static/src/js/ui_utils.js"/> -->
+<!-- 			<script type="text/javascript" src="/website_pdf_preview/static/src/js/text_layer_builder.js"/> -->
+			
+			<script type="text/javascript" src="/website_pdf_preview/static/src/js/pdf.js"/>
+			<script type="text/javascript" src="/website_pdf_preview/static/src/js/pdf_viewer.js"/>
+			<script type="text/javascript" src="/website_pdf_preview/static/src/js/website_pdf_preview.js"/>
+		</xpath>
+	</template>
+
+</odoo>

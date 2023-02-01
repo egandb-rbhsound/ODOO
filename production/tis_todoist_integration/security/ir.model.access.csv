@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_todoist_data,todoist.data,model_todoist_data,project.group_project_user,1,0,0,0
+access_todoist_data_manager,todoist.data,model_todoist_data,project.group_project_manager,1,1,1,1
+access_todoist_data_success_wizard_manager,sync.wizard,model_sync_wizard,project.group_project_user,1,1,1,1
+access_todoist_data_success_wizard_user,sync.wizard,model_sync_wizard,project.group_project_manager,1,1,1,1
+
+
+
+
+

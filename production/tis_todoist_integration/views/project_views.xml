@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_view_edit_project_inherit_todoist" model="ir.ui.view">
+        <field name="name">project.view.edit.project.inherit.todoist</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <!--<xpath expr="///button[@name='action_view_all_rating']" position="after">
+                <button name="sync_project_to_todoist" class="oe_stat_button"
+                        icon="fa-retweet" type="object" string="Sync to Todoist"/>
+            </xpath>-->
+            <xpath expr="//field[@name='allowed_portal_user_ids']" position="after">
+                <field name="todoist_project_id" invisible="1"/>
+                <field name="last_sync_at" attrs="{'invisible':[('todoist_project_id','=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_tsak_view_edit_project_inherit_todoist" model="ir.ui.view">
+        <field name="name">project.task.view.edit.project.inherit.todoist</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <!--<xpath expr="///button[@name='action_open_parent_task']" position="after">
+                <button name="sync_task_to_todoist" class="oe_stat_button"
+                        icon="fa-retweet" type="object" string="Sync to Todoist"/>
+            </xpath>-->
+            <xpath expr="///field[@name='date_last_stage_update']" position="after">
+                <field name="todoist_task_id" invisible="1"></field>
+                <field name="last_sync_at" attrs="{'invisible':[('todoist_task_id','=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+

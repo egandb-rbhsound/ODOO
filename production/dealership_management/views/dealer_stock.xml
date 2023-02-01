@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record id="dealership_stock_tree" model="ir.ui.view">
+			<field name="name">dealership.stock.tree</field>
+			<field name="model">dealer.stock.line</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree editable="top">
+					<field name="product_id"/>
+					<field name="qty"/>
+				</tree>
+			</field>
+		</record>
+
+    <act_window id="dealer_stock_action" name="Dealer Stock" res_model="dealer.stock.line" view_mode="tree" />
+
+  </data>
+</odoo>

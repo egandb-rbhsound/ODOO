@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+	<data>
+		<record id="dealership_contract_form" model="ir.ui.view">
+			<field name="name">dealership.contract.form</field>
+			<field name="model">dealership.contract</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form create="false" edit="false" delete="false">
+					<header>
+						<field name="state" widget="statusbar"/>
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="application_id" invisible="True"/>
+								<field name="partner_id"/>
+								<field name="plan_id"/>
+								<field name="duration"/>
+								<field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+							</group>
+							<group>
+								<field name="create_date"/>
+								<field name="date_from"/>
+								<field name="date_to"/>
+								<field name="date_terminated"/>
+							</group>
+							<field name="terms"/>
+						</group>
+						<notebook>
+							<page string="Contract Lines" name="contract_lines">
+								<field name="contract_line"  widget="section_and_note_one2many" mode="tree,kanban">
+									<tree>
+										<field name="sale_order_id" />
+										<field name="state" />
+										<field name="date_from" />
+										<field name="date_to" />
+										<field name="total_days" />
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="dealership_contract_tree" model="ir.ui.view">
+			<field name="name">dealership.contract.tree</field>
+			<field name="model">dealership.contract</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree create="false" edit="false" delete="false">
+					<field name="application_id" invisible="True"/>
+					<field name="partner_id"/>
+					<field name="plan_id"/>
+					<field name="date_from"/>
+					<field name="date_to"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="dealership_business_type_tree" model="ir.ui.view">
+			<field name="name">business.type.tree</field>
+			<field name="model">business.type</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name" />
+					<field name="code"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="dealership_business_type_form" model="ir.ui.view">
+			<field name="name">business.type.form</field>
+			<field name="model">business.type</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group string="Business Type For Users">
+							<group>
+								<field name="name" />
+								<field name="code" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<act_window id="dealership_contract_action" name="Contract" res_model="dealership.contract" view_mode="tree,form" />
+		<act_window id="dealership_business_type_action" name="Business Type" res_model="business.type" view_mode="tree,form" />
+
+	</data>
+</odoo>

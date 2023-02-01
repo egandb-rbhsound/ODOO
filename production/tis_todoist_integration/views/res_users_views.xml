@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_users_view_form_inherit_trello" model="ir.ui.view">
+        <field name="name">res.users.view.form.inherit.trello</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='image_1920']" position="before">
+                <div style="margin-top:7px;" attrs="{'invisible':[('todoist_api_token','=',False)]}">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="sync_with_todoist" class="oe_stat_button"
+                                icon="fa-retweet" type="object" string="Sync With Todoist"/>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='signature']" position="after">
+                <group string="Todoist Settings">
+                    <group>
+                        <field name="todoist_api_token"/>
+                    </group>
+                    <group>
+                        <button name="get_todoist_api_token" icon="fa-arrow-right" type="object"
+                                string="Get your Todoist API Token" class="btn-link"/>
+                        <br/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+

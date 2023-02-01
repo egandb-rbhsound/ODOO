@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+	<data>
+		<record id='dealership_appication_status' model='mail.template'>
+			<field name="name">Dealership Request Status</field>
+			<field name="model_id" ref="dealership_management.model_dealership_application"/>
+			<field name="auto_delete" eval="True"/>
+			<field name="subject">Check Your Dealer Application Status</field>
+			<field name="email_from">${(object.env.user.company_id.email) | safe}</field>
+			<field name="email_to">${object.email}</field>
+			<field name="body_html" type="html">
+				<div>
+					<p>Hi <strong>${object.name}</strong></p>
+					<p>Your Email: ${object.email}</p>
+					<p>Your Request Id: ${object.token}</p>
+					<p>
+					% if object.state == 'processed':
+						Thank you for submitting an application, for more information about your application please click on the below link.
+					% endif
+					% if object.state == 'pending':
+						Your dealer application is on pending due to inconsistent information to fill please follow the below link.
+					% endif
+					% if object.state == 'approved':
+						Please check that your application has been approved and is being waited to select your plan.
+					% endif
+					% if object.state == 'decline':
+						Unfortunately, your application has been declined due to inconsistent information.
+					% endif
+					</p>
+
+					% set web_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url')
+					<a href="${web_url}/dealer/status?db=${object.env.cr.dbname}">
+						${web_url}/dealer/status
+					</a>
+				</div>
+			</field>
+		</record>
+
+		<record id='dealership_appication_confirmation_status' model='mail.template'>
+			<field name="name">Dealership Application Order Confirmation</field>
+			<field name="model_id" ref="dealership_management.model_dealership_application"/>
+			<field name="auto_delete" eval="True"/>
+			<field name="subject">Dealership Application Order Confirmation</field>
+			<field name="email_from">${(object.env.user.company_id.email) | safe}</field>
+			<field name="email_to">${object.email}</field>
+			<field name="body_html" type="html">
+				<div>
+					<h4>Hi <strong>${object.name}</strong></h4>
+					<p>
+						% if object.state == 'approved':
+							Thanks for applying, we have received your order successfully. Now we are processing your application and will update you asap.
+						% endif
+						% if object.state == 'done':
+							Thanks for upgrade your plan, we are processing your dealership plan and will update you asap.
+						% endif
+					</p>
+				</div>
+			</field>
+		</record>
+
+		<record id='dealership_appication_done_status' model='mail.template'>
+			<field name="name">Dealership Application Confirmation</field>
+			<field name="model_id" ref="dealership_management.model_dealership_application"/>
+			<field name="auto_delete" eval="True"/>
+			<field name="subject">Dealership Application Confirmation</field>
+			<field name="email_from">${(object.env.user.company_id.email) | safe}</field>
+			<field name="email_to">${object.email}</field>
+			<field name="body_html" type="html">
+				<div>
+					<h4>Hi <strong>${object.name}</strong></h4>
+					<span>Congratulations!</span><br />
+					Your dealership plan has been activated, please <a href="${web_url}/dealer/status?db=${object.env.cr.dbname}">check your profile</a>.
+				</div>
+			</field>
+		</record>
+
+		<record id='dealership_appication_expire_status' model='mail.template'>
+			<field name="name">Dealership Plan Status</field>
+			<field name="model_id" ref="dealership_management.model_dealership_contract"/>
+			<field name="auto_delete" eval="True"/>
+			<field name="subject">Dealership Plan Status</field>
+			<field name="email_from">${(object.env.user.company_id.email) | safe}</field>
+			<field name="email_to">${object.application_id.email}</field>
+			<field name="body_html" type="html">
+				<p>Hi <strong>${object.application_id.name}</strong></p>
+				<p>Your Dealership Plan <strong>'${object.plan_id.name}'</strong> will be going to expire on <strong>${object.date_to}</strong>.
+				Please update your payment to re-activate it.</p>
+			</field>
+		</record>
+
+
+
+
+
+	</data>
+</odoo>

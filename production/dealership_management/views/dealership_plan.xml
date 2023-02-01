@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+	<data>
+		<record id="dealership_plan_form" model="ir.ui.view">
+			<field name="name">dealership.plan.form</field>
+			<field name="model">dealership.plan</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<field name="image" widget="image" class="oe_avatar oe_left" />
+						<group col="4">
+							<field name="name"/>
+							<field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+							<field name="currency_id" invisible="1"/>
+							<field name="type"/>
+							<field name="duration"/>
+						</group>
+						<group string="Terms &amp; Conditions">
+							<field name="terms" nolabel="1"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="dealership_plan_tree" model="ir.ui.view">
+			<field name="name">dealership.plan.tree</field>
+			<field name="model">dealership.plan</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="currency_id" invisible="1"/>
+					<field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+					<field name="type"/>
+					<field name="duration"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="dealership_plan_kanban" model="ir.ui.view">
+			<field name="name">dealership.plan.kanban</field>
+			<field name="model">dealership.plan</field>
+			<field name="type">kanban</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<field name="id"/>
+					<field name="currency_id"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_kanban_global_click">
+                <div class="o_kanban_image">
+                    <img t-att-src="kanban_image('dealership.plan', 'image', record.id.raw_value)" alt="Plan" class="o_image_64_contain"/>
+								</div>
+								<div class="oe_kanban_details">
+                  <strong class="o_kanban_record_title">
+                      <field name="name"/>
+                  </strong>
+                  <div class="o_kanban_tags_section">
+										<field name="type"/>
+                  </div>
+                  <ul>
+										<li><strong>Duration: <field name="duration" /></strong></li>
+                    <li><strong>Price: <field name="price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" /></strong></li>
+                  </ul>
+                </div>
+              </div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<act_window id="dealership_plan_action" name="Plan" res_model="dealership.plan" view_mode="kanban,tree,form" />
+
+	</data>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+	<record id="application_history_tree" model="ir.ui.view">
+		<field name="name">application.history.tree</field>
+		<field name="model">application.history</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="full_fill" />
+				<field name="application_id"/>
+				<field name="state"/>
+				<field name="query"/>
+				<field name="ask_attachment"/>
+				<field name="app_attachment"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="application_history_form" model="ir.ui.view">
+		<field name="name">application.history.form</field>
+		<field name="model">application.history</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="application_id"/>
+						<field name="state"/>
+					</group>
+					<group>
+						<field name="query"/>
+						<field name="ask_attachment"/>
+					</group>
+					<group>
+						<field name="response"/>
+						<field name="app_attachment"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="dealer_history_search_view" model="ir.ui.view">
+    <field name="name">application.history.search</field>
+    <field name="model">application.history</field>
+    <field name="arch" type="xml">
+			<search string="History">
+				<group expand="1" string="Group By">
+					<filter string="Dealer Application" name="group_by_application_id" context="{'group_by':'application_id'}"/>
+	        <filter string="History State" name="group_by_state" context="{'group_by':'state'}"/>
+	      </group>
+			</search>
+		</field>
+	</record>
+
+
+	<act_window id="application_history_action" context="{'search_default_group_by_application_id': 1}" name="Application History"  res_model="application.history" view_mode="tree,form" />
+	<act_window id="dealership_history_action" name="Application History" res_model="application.history" view_mode="tree,form" domain="[('application_id.id','=',active_id)]" />
+</odoo>

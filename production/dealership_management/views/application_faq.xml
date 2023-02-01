@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+  <data>
+
+    <record id="application_faq_category_tree" model="ir.ui.view">
+  		<field name="name">application.faq.category.tree</field>
+  		<field name="model">application.faq.category</field>
+  		<field name="type">tree</field>
+  		<field name="arch" type="xml">
+  			<tree>
+  				<field name="name" />
+  				<field name="sequence"/>
+  			</tree>
+  		</field>
+  	</record>
+
+    <record id="application_faq_line_tree" model="ir.ui.view">
+  		<field name="name">application.faq.line.tree</field>
+  		<field name="model">application.faq.line</field>
+  		<field name="type">tree</field>
+  		<field name="arch" type="xml">
+  			<tree>
+  				<field name="name" />
+  				<field name="sequence"/>
+          <field name="faq_category_id" />
+  			</tree>
+  		</field>
+  	</record>
+
+    <record id="application_faq_category_form" model="ir.ui.view">
+  		<field name="name">application.faq.category.form</field>
+  		<field name="model">application.faq.category</field>
+  		<field name="type">form</field>
+  		<field name="arch" type="xml">
+  			<form>
+  				<sheet>
+            <field name="image" class="oe_avatar oe_left" widget="image" />
+  					<group col="4">
+              <field name="name" />
+  						<field name="sequence"/>
+              <field name="description" />
+            </group>
+  				</sheet>
+  			</form>
+  		</field>
+  	</record>
+
+    <record id="application_faq_line_form" model="ir.ui.view">
+  		<field name="name">application.faq.line.form</field>
+  		<field name="model">application.faq.line</field>
+  		<field name="type">form</field>
+  		<field name="arch" type="xml">
+  			<form>
+  				<sheet>
+            <group col="4">
+              <field name="faq_category_id" />
+              <field name="sequence" />
+            </group>
+              <group >
+                <field name="name" />
+    					</group>
+              <group>
+                <field name="answer" />
+              </group>
+              <group>
+                <field name="description" />
+              </group>
+  				</sheet>
+  			</form>
+  		</field>
+  	</record>
+
+    <record id="application_faq_search_view" model="ir.ui.view">
+	    <field name="name">application.faq.search</field>
+	    <field name="model">application.faq.line</field>
+	    <field name="arch" type="xml">
+				<search string="Application FAQ">
+					<group expand="1" string="Group By">
+		        <filter string="Group By Category" name="group_by_faq_category_id" context="{'group_by':'faq_category_id'}"/>
+		      </group>
+				</search>
+			</field>
+		</record>
+
+    <act_window id="application_faq_category_action" name="Category" res_model="application.faq.category" view_mode="tree,form" />
+    <act_window id="application_faq_line_action" context="{'search_default_group_by_faq_category_id': 1}" name="FAQ" res_model="application.faq.line" view_mode="tree,form" />
+
+
+  </data>
+</odoo>

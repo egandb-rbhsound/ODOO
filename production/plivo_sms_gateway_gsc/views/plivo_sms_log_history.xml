@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+	<!-- Tree View Section -->
+	<record id="plivo_sms_log_history_tree_view" model="ir.ui.view">
+		<field name="name">plivo.sms.log.history.tree</field>
+		<field name="model">plivo.sms.log.history</field>
+		<field name="arch" type="xml">
+			<tree create="0" edit="0" decoration-success="status == 'Delivered'"
+										decoration-danger="status != 'Delivered'">
+				<field name="name" />
+				<field name="plivo_account_id" />
+				<field name="sms_send_rec_id" />
+				<field name="mobile_number" />
+				<field name="message" />
+				<field name="status" optional="show" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="plivo_sms_log_history_form_view" model="ir.ui.view">
+		<field name="name">plivo.sms.log.history.form</field>
+		<field name="model">plivo.sms.log.history</field>
+		<field name="arch" type="xml">
+			<form create="0" edit="0">
+				<sheet>
+					<div class="oe_title">
+						<label class="oe_edit_only" for="name" string="SMS Log ID" />
+						<h1 class="d-flex flex-row justify-content-between">
+							<field name="name" default_focus="1" class="text-truncate" />
+						</h1>
+					</div>
+
+					<group>
+						<group>
+							<field name="plivo_account_id" />
+							<field name="sms_send_rec_id" />
+						</group>
+						<group>
+							<field name="mobile_number" />
+							<field name="message_id" />
+							<field name="message" />
+							<field name="status" />
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+	<!-- Action View Section -->
+	<record id="plivo_sms_log_history_action"
+		model="ir.actions.act_window">
+		<field name="name">Plivo SMS Log History</field>
+		<field name="res_model">plivo.sms.log.history</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="plivo_sms_log_history_tree_view" />
+	</record>
+
+	<!-- Child Menu Section -->
+	<menuitem id="plivo_sms_log_history_menu" name="SMS Log History"
+		parent="plivo_sms_gateway_gsc.plivo_sms_main_menu"
+		sequence="2" action="plivo_sms_log_history_action" />
+
+</odoo>

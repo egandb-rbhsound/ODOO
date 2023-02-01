@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="pdf_preview_template" inherit_id="website.layout">
+		<xpath expr="//header" position="after">
+		<!-- The Modal -->
+			<div class="modal fade in pdf_preview" id="myModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal-header">
+						  	<h4 class="modal-title">Modal Heading</h4>
+						  	<button type="button" class="close" data-dismiss="modal">Close</button>
+						</div>
+						
+						<!-- Modal body -->
+						<div class="modal-body">
+						  	<t t-esc="type"/>
+						  	<t t-esc="mimetype"/>
+	<!-- 					  	<t t-esc="mimetype"/> -->
+						</div>
+						
+						<!-- Modal footer -->
+						<div class="modal-footer">
+						  	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</xpath>
+	</template>
+</odoo>

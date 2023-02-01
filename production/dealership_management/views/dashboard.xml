@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+  <data>
+
+    <record id="action_dealer_dashboard" model="ir.actions.client">
+  		<field name="name">Dashboard</field>
+  		<field name="tag">dealer_backend_dashboard</field>
+  	</record>
+
+    <template id="dealer_assets_backend" inherit_id="web.assets_backend">
+  		<xpath expr="//script[last()]" position="after">
+        <link rel="stylesheet" type="text/scss" href="/dealership_management/static/src/scss/dashboard.backend.scss"/>
+        <script type="text/javascript" src="/dealership_management/static/src/js/config.mixin.js" />
+  			<script type="text/javascript" src="/dealership_management/static/src/js/dashboard.backend.js"/>
+  		</xpath>
+  	</template>
+
+
+
+  </data>
+</odoo>

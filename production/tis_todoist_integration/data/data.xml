@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="project_stage_completed" model="project.task.type">
+        <field name="sequence">1</field>
+        <field name="name">Completed</field>
+    </record>
+</odoo>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+  <data>
+
+    <record id="dealer_res_config_settings_view_form" model="ir.ui.view">
+      <field name="name">dealer.res.config.settings.view.form.inherit.website</field>
+      <field name="model">res.config.settings</field>
+      <field name="priority" eval="21"/>
+      <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[hasclass('settings')]" position="inside">
+          <div class="app_settings_block" data-string="Dealership" string="Dealership" data-key="dealership_management" groups="website.group_website_designer">
+            <h2>Select the Website to Configure</h2>
+            <div class="row mt16 o_settings_container" id="dealer_selection_website" groups="website.group_website_designer">
+              <div class="col-xs-12 col-md-6 o_setting_box" id="website">
+                <div class="o_setting_right_pane mt-4">
+                  <div class="text-muted">
+                      Settings on this page will apply to this website
+                  </div>
+                  <group>
+                    <field name="website_id" required="True"/>
+                  </group>
+                </div>
+              </div>
+            </div>
+            <h2>Dealer Sign Up Form</h2>
+            <div class="row mt16 o_settings_container" id="dealer_selection_settings" groups="website.group_website_designer">
+              <div class="col-xs-12 col-md-6 o_setting_box" id="tabs">
+                <div class="o_setting_right_pane mt-4">
+                  <div class="text-muted">
+                      Hide tabs from the website dealer sign up form
+                  </div>
+                  <group>
+                    <field name="hide_advertisement_tab" />
+                    <field name="hide_site_location_tab" />
+                    <field name="hide_investment_tab" />
+                  </group>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 o_setting_box" id="banner">
+                <div class="o_setting_right_pane mt-4">
+                  <div class="text-muted">
+                      Set dealership sing up form top banner
+                  </div>
+                  <group>
+                    <field name="sign_up_banner" widget="image" class="float-left oe_avatar" />
+                  </group>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 o_setting_box" id="allow_application">
+                <div class="o_setting_right_pane mt-4">
+                  <div class="text-muted">
+                      Default rules of dealers for accept applications
+                  </div>
+                  <group>
+                    <field name="allow_dealer_application" widget="selection" />
+                    <button type="object" name="open_template_dealer" string="Default Access Rules" icon="fa-arrow-right" class="btn-link mt-2"/>
+                  </group>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 o_setting_box" id="banner">
+                <div class="o_setting_right_pane mt-4">
+                  <div class="text-muted">
+                      Allow user to sign up as a new Dealer
+                  </div>
+                  <group>
+                    <field name="allow_user_signup" />
+                    <field name="signup_closed_description" attrs="{'invisible':[('allow_user_signup', '=', True)]}"/>
+                  </group>
+                </div>
+              </div>
+            </div>
+            <h2>Dealer Locator</h2>
+            <div class="row mt16 o_settings_container" id="dealer_selection_settings" groups="website.group_website_designer">
+              <div class="col-xs-12 col-md-6 o_setting_box" id="locator">
+                <div class="o_setting_right_pane mt-4">
+                  <div class="text-muted">
+                      Allow user to find dealers and show locations
+                  </div>
+                  <group>
+                    <field name="allow_dealer_locator" />
+                  </group>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 o_setting_box" id="app" attrs="{'invisible':[('allow_dealer_locator', '=', False)]}">
+                <div class="o_setting_right_pane mt-4">
+                  <div class="text-muted">
+                      For display dealer locations to user on website set Google Map API Key.
+                  </div>
+                  <group>
+                    <field name='google_map_api_key' />
+                  </group>
+                </div>
+              </div>
+            </div>
+            <h2>Others</h2>
+            <div class="row mt16 o_settings_container" id="dealer_selection_settings" groups="website.group_website_designer">
+              <div class="col-xs-12 col-md-6 o_setting_box" id="locator">
+                <div class="o_setting_right_pane mt-4">
+                  <div class="text-muted">
+                      Notify user before days to expire the contract.
+                  </div>
+                  <div class="mt-2">
+                    <field name='before_notify' /> Days
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="action_dealership_configuration" model="ir.actions.act_window">
+      <field name="name">Settings</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">res.config.settings</field>
+      <field name="view_mode">form</field>
+      <field name="target">inline</field>
+      <field name="context">{'module' : 'dealership_management'}</field>
+    </record>
+
+  </data>
+</odoo>
